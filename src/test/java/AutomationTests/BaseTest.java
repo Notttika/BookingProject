@@ -21,7 +21,7 @@ public class BaseTest {
     }
 
     @Test
-    public void listOfApartments() throws InterruptedException {
+    public void listOfApartments()  {
         //GIVEN
         String existingCity = "New York";
 

@@ -19,7 +19,7 @@ public class BookYourHotelNowPage {
     public BookYourHotelNowPage (WebDriver driver) {
         this.driver = driver;
     }
-    By titles= By.xpath("//div[@class=\"fcab3ed991 a23c043802\"]");
+    By address= By.xpath("//span[@class=\"f4bd0794db b4273d69aa\" and@data-testid=\"address\"]");
     By cityNewYork= By.xpath("//div[@class=\"ab090fee6e cc6f7f2b89\"]/descendant::input");
     By dataElement1= By.xpath("//span[@class=\"b21c1c6c83 e505d9d049 e5f46f434c\"]");
     By dataElement2= By.xpath("//span[@class=\"b21c1c6c83 e505d9d049 fed31314a4\"]");
@@ -80,13 +80,13 @@ public class BookYourHotelNowPage {
         return this;
     }
     public void titlesWithNewYork () {
-        List<WebElement> hotelLists = driver.findElements(titles);
+        List<WebElement> hotelLists = driver.findElements(address);
         List<String> collectWithFilter = hotelLists.stream().map(e -> e.getText()).filter(e -> e.contains("New York")).collect(Collectors.toList());
         List<String> collectWithoutFilter = hotelLists.stream().map(e -> e.getText()).collect(Collectors.toList());
 
         System.out.println(hotelLists.size());
-        System.out.println("Without a filter" + collectWithoutFilter.size());
+        System.out.println("All address with city named New York " + collectWithoutFilter.size());
         System.out.println("With a filter" + collectWithFilter.size());
-        org.assertj.core.api.Assertions.assertThat(collectWithFilter.size()).isNotEqualTo(collectWithoutFilter.size());
+        org.assertj.core.api.Assertions.assertThat(collectWithFilter.size()).isEqualTo(collectWithoutFilter.size());
     }
 }
